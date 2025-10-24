@@ -107,3 +107,25 @@
 .reset-events-btn:hover {
   background-color: #1e40af;
 }
+
+.method-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.method-buttons button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+}
+
+.method-buttons button:hover {
+  background-color: #2563eb;
+}
