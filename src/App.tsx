@@ -1,47 +1,77 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import TouchSpin from '@touchspin/react/vanilla'
 import '@touchspin/renderer-vanilla/css'
 import './App.css'
 
 function App() {
-  const [value1, setValue1] = useState(10)
-  const [value2, setValue2] = useState(25.5)
+  const [value, setValue] = useState(25.5)
+  const [firedEvents, setFiredEvents] = useState<Set<string>>(new Set())
+
+  const handleEvent = useCallback((eventName: string) => {
+    setFiredEvents(prev => new Set(prev).add(eventName))
+  }, [])
+
+  const handleMin = useCallback(() => handleEvent('onMin'), [handleEvent])
+  const handleMax = useCallback(() => handleEvent('onMax'), [handleEvent])
+  const handleStartSpin = useCallback(() => handleEvent('onStartSpin'), [handleEvent])
+  const handleStopSpin = useCallback(() => handleEvent('onStopSpin'), [handleEvent])
+  const handleStartUpSpin = useCallback(() => handleEvent('onStartUpSpin'), [handleEvent])
+  const handleStartDownSpin = useCallback(() => handleEvent('onStartDownSpin'), [handleEvent])
+  const handleStopUpSpin = useCallback(() => handleEvent('onStopUpSpin'), [handleEvent])
+  const handleStopDownSpin = useCallback(() => handleEvent('onStopDownSpin'), [handleEvent])
+  const handleSpeedChange = useCallback(() => handleEvent('onSpeedChange'), [handleEvent])
+
+  const allEvents = [
+    'onMin',
+    'onMax',
+    'onStartSpin',
+    'onStopSpin',
+    'onStartUpSpin',
+    'onStartDownSpin',
+    'onStopUpSpin',
+    'onStopDownSpin',
+    'onSpeedChange',
+  ]
 
   return (
     <div className="App">
-      <h1>TouchSpin React Test</h1>
+      <h1>TouchSpin React Event Demo</h1>
 
       <div className="demo-section">
-        <h2>Basic Integer Spinner</h2>
+        <h2>USD Spinner with Event Tracking</h2>
         <TouchSpin
-          value={value1}
-          onChange={setValue1}
-          min={0}
-          max={100}
-          step={1}
-        />
-        <p>Current value: {value1}</p>
-      </div>
-
-      <div className="demo-section">
-        <h2>Decimal Spinner with Prefix/Suffix</h2>
-        <TouchSpin
-          value={value2}
-          onChange={setValue2}
+          value={value}
+          onChange={setValue}
           min={0}
           max={100}
           step={0.5}
           decimals={2}
           prefix="$"
           suffix=" USD"
+          onMin={handleMin}
+          onMax={handleMax}
+          onStartSpin={handleStartSpin}
+          onStopSpin={handleStopSpin}
+          onStartUpSpin={handleStartUpSpin}
+          onStartDownSpin={handleStartDownSpin}
+          onStopUpSpin={handleStopUpSpin}
+          onStopDownSpin={handleStopDownSpin}
+          onSpeedChange={handleSpeedChange}
         />
-        <p>Current value: ${value2.toFixed(2)} USD</p>
+        <p>Current value: ${value.toFixed(2)} USD</p>
       </div>
 
       <div className="demo-section">
-        <h2>Uncontrolled Spinner</h2>
-        <TouchSpin defaultValue={50} min={0} max={200} step={10} />
-        <p>This spinner manages its own state</p>
+        <h2>TouchSpin Events</h2>
+        <p>Events that have been fired:</p>
+        <ul className="event-list">
+          {allEvents.map(event => (
+            <li key={event} className={firedEvents.has(event) ? 'fired' : 'not-fired'}>
+              {event}: {firedEvents.has(event) ? '✅ Fired' : '❌ Not fired'}
+            </li>
+          ))}
+        </ul>
+        <button className="reset-events-btn" onClick={() => setFiredEvents(new Set())}>Reset Events</button>
       </div>
     </div>
   )
