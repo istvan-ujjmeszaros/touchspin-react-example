@@ -65,6 +65,23 @@ function App() {
       <h1>TouchSpin React Event Demo</h1>
 
       <div className="demo-section">
+        <h2>Imperative API Methods</h2>
+        <p>Test all TouchSpin methods via the ref API:</p>
+        <div className="method-buttons">
+          <button onClick={() => touchSpinRef.current?.focus()}>Focus</button>
+          <button onClick={() => touchSpinRef.current?.blur()}>Blur</button>
+          <button onClick={() => touchSpinRef.current?.increment()}>Increment</button>
+          <button onClick={() => touchSpinRef.current?.decrement()}>Decrement</button>
+          <button onClick={handleGetValue}>Get Value</button>
+          <button onClick={handleSetValue}>Set Value</button>
+          <button onClick={() => touchSpinRef.current?.startUpSpin()}>Start Up Spin</button>
+          <button onClick={() => touchSpinRef.current?.startDownSpin()}>Start Down Spin</button>
+          <button onClick={() => touchSpinRef.current?.stopSpin()}>Stop Spin</button>
+          <button onClick={handleUpdateSettings}>Update Settings</button>
+        </div>
+      </div>
+
+      <div className="demo-section">
         <h2>USD Spinner with Event Tracking</h2>
         <TouchSpin
           ref={touchSpinRef}
@@ -100,23 +117,6 @@ function App() {
           ))}
         </ul>
         <button className="reset-events-btn" onClick={() => setFiredEvents(new Set())}>Reset Events</button>
-      </div>
-
-      <div className="demo-section">
-        <h2>Imperative API Methods</h2>
-        <p>Test all TouchSpin methods via the ref API:</p>
-        <div className="method-buttons">
-          <button onClick={() => touchSpinRef.current?.focus()}>Focus</button>
-          <button onClick={() => touchSpinRef.current?.blur()}>Blur</button>
-          <button onClick={() => touchSpinRef.current?.increment()}>Increment</button>
-          <button onClick={() => touchSpinRef.current?.decrement()}>Decrement</button>
-          <button onClick={handleGetValue}>Get Value</button>
-          <button onClick={handleSetValue}>Set Value</button>
-          <button onClick={() => touchSpinRef.current?.startUpSpin()}>Start Up Spin</button>
-          <button onClick={() => touchSpinRef.current?.startDownSpin()}>Start Down Spin</button>
-          <button onClick={() => touchSpinRef.current?.stopSpin()}>Stop Spin</button>
-          <button onClick={handleUpdateSettings}>Update Settings</button>
-        </div>
       </div>
     </div>
   )
