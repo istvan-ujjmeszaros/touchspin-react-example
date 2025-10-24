@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@touchspin/react": "file:../touchspin-react/packages/react",
-    "@touchspin/renderer-vanilla": "file:../touchspin/packages/renderers/vanilla",
+    "@touchspin/react": "^5.0.0",
+    "@touchspin/renderer-vanilla": "^5.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

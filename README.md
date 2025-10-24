@@ -4,15 +4,7 @@ Standalone Vite + React 19 demo showcasing the `@touchspin/react` vanilla render
 
 ## Getting Started
 
-Because the published React adapter is still in alpha, this example consumes the local library source. Make sure the sibling `touchspin-react` repo has been built before installing:
-
-```bash
-cd ../touchspin-react/packages/react
-npm install
-npm run build
-```
-
-Then install dependencies and launch the demo:
+Install dependencies and launch the demo:
 
 ```bash
 cd ../touchspin-react-example
@@ -21,6 +13,8 @@ npm run dev
 ```
 
 Open the printed URL (default `http://localhost:5173/`) to try the number spinners. The example wires both controlled and uncontrolled components and imports the vanilla renderer CSS.
+
+> Need to test unpublished bits? Swap the `@touchspin/react` dependency in `package.json` back to a local `file:` reference and rebuild the sibling `touchspin-react` package before installing.
 
 ## Scripts
 
