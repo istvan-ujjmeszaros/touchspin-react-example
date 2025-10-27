@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>TouchSpin React Event Demo</h1>
+      <h1>TouchSpin React Vanilla</h1>
 
       <div className="demo-section">
         <h2>Imperative API Methods</h2>
